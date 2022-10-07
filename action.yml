@@ -1,0 +1,11 @@
+name: 'A-SCEND AutoTesting Feature Check'
+description: 'A-SCEND AutoTesting Feature Verification Action'
+author: 'Michel Casilla - A-LIGN'
+# inputs:
+  # milliseconds: # change this
+  #   required: true
+  #   description: 'input description here'
+  #   default: 'default value if applicable'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
