@@ -3,16 +3,13 @@ import * as core from '@actions/core'
 
 async function run(): Promise<void> {
   try {
-    const state = core.getState('touchedfiles')
-    core.notice(state)
-    // const ms: string = core.getInput('milliseconds')
-    // core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
-
-    // core.debug(new Date().toTimeString())
-    // await wait(parseInt(ms, 10))
-    // core.debug(new Date().toTimeString())
-
-    // core.setOutput('time', new Date().toTimeString())
+    const touchedfiles = core.getState('touchedfiles')
+    let listOfFiles: string[] = JSON.parse(touchedfiles)
+    listOfFiles = listOfFiles.filter(filepath => filepath.includes('.feature'))
+    const features: string = listOfFiles.join(',')
+    core.saveState('featuresToRun', features)
+    core.setOutput('featuresToRun', features)
+    core.notice(JSON.stringify(features))
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
