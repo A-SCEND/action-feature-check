@@ -1,14 +1,21 @@
 import * as core from '@actions/core'
-// import {wait} from './wait'
+import {getOrCreateRunID} from './testrail'
+import {getTouchedFiles} from './util'
 
 async function run(): Promise<void> {
   try {
-    const touchedfiles = core.getState('touchedfiles')
-    let listOfFiles: string[] = JSON.parse(touchedfiles)
-    listOfFiles = listOfFiles.filter(filepath => filepath.includes('.feature'))
-    const features: string = listOfFiles.join(',')
-    core.saveState('featuresToRun', features)
-    core.setOutput('featuresToRun', features)
+    const runID = await getOrCreateRunID()
+    if (!runID) {
+      throw new Error('Unable to create runID')
+    }
+    const features = await getTouchedFiles()
+    let featuresStr = '*'
+    if (features.length) {
+      featuresStr = features.join(',')
+    }
+    core.setOutput('run_id', runID)
+    core.setOutput('features_to_run', featuresStr)
+    core.notice(`RUNID: ${runID}`)
     core.notice(JSON.stringify(features))
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
