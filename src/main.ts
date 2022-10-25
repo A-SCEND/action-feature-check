@@ -18,6 +18,7 @@ async function run(): Promise<void> {
     core.notice(`RUNID: ${runID}`)
     core.notice(JSON.stringify(features))
   } catch (error) {
+    core.error('This is an error')
     if (error instanceof Error) core.setFailed(error.message)
   }
 }
