@@ -42,3 +42,7 @@ List of secrets required by this action
 * Should be set as a secret, is meant to be used for connect to testrail in case the test rail account is using multiple projects.
 ### TESTRAIL_USERNAME
 * Should be set as a secret, is meant to be used for connect to testrail api. All the report sent to test rail will be report with the user provided.
+
+## Important
+
+### These action connect to a git pod environment trouth ssh wich mean the credencials added to the secrets most be from a running environment from now. Also that environment most meet the condition to run the auto_testing repo: the port 1337 most marked as public because the cypress report will try to access it in background mode.
