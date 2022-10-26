@@ -33,7 +33,7 @@ List of secrets required by this action
 ### GITPOD_SSH_USERNAME
 * Should be set as a secret, is meant to be used connect to a gitpod ssh running env should be the host of the gp env: example `ascend-devtools-875q0uzasfake` can be obtained from the connect via ssh option on the workspace dashboard
 ### TESTRAIL_HOST
-* Should be set as a secret, is meant to be used for connect to test rail api if available example: `https://ascend2.testrail.io/index.php?/api/v2`
+* Should be set as a secret, is meant to be used for connect to test rail api if available example: `https://companynamespace.testrail.io/index.php?/api/v2`
 ### TESTRAIL_PASSWORD
 * Should be set as a secret, is meant to be used for connect to testrail api need to be generator from testrail, is the same as the api key.
 ### TESTRAIL_PROJECTID
