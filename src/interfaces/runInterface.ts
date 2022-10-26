@@ -11,6 +11,7 @@ export interface RunResponseInterface {
 export interface Run {
   id: number;
   name: string;
+  is_completed?: boolean
 }
 
 export interface Links {

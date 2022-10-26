@@ -4,8 +4,8 @@ import {getTouchedFiles} from './util'
 
 async function run(): Promise<void> {
   try {
-    const runID = await getOrCreateRunID()
-    if (!runID) {
+    const runInfo = await getOrCreateRunID()
+    if (!runInfo) {
       throw new Error('Unable to create runID')
     }
     const features = await getTouchedFiles()
@@ -13,13 +13,11 @@ async function run(): Promise<void> {
     if (features.length) {
       featuresStr = features.join(',')
     }
-    core.setOutput('run_id', runID)
+    core.setOutput('run_id', runInfo.id)
     core.setOutput('features_to_run', featuresStr)
-    core.notice(`RUNID: ${runID}`)
-    core.notice(JSON.stringify(features))
+    core.debug(`run_id: ${runInfo.id}`)
   } catch (error) {
-    core.error('This is an error')
-    if (error instanceof Error) core.setFailed(error.message)
+    core.setFailed(error as string)
   }
 }
 

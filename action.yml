@@ -1,11 +1,31 @@
-name: 'A-SCEND AutoTesting Feature Check'
+name: 'A-SCEND AutoTesting'
 description: 'A-SCEND AutoTesting Feature Verification Action'
 author: 'Michel Casilla - A-LIGN'
-# inputs:
-  # milliseconds: # change this
-  #   required: true
-  #   description: 'input description here'
-  #   default: 'default value if applicable'
+inputs:
+  feature_pattern:
+    required: false
+    description: 'Feature files patter .feature'
+    default: '.feature'
+  touched_files:
+    required: true
+    description: 'list of files touchet by the commits, this comes from the previews step'
+  testrail_suidId:
+    required: false
+    description: 'TestRail Suite ID apply for account with multiple projects'
+    default: ''
+  testrail_host:
+    required: true
+    description: 'TestRail  host url'
+    default: 'https://ascend2.testrail.io/index.php?/api/v2'
+  testrail_username:
+    required: true
+    description: 'TestRail reporter username'
+  testrail_password:
+    required: true
+    description: 'TestRail reporter password or api key this is generated in testrail dashboard'
+  testrail_projectid:
+    required: true
+    description: 'TestRail projectid'
 runs:
   using: 'node16'
   main: 'dist/index.js'
